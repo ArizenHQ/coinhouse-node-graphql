@@ -1,8 +1,8 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { CommentsService } from 'src/services/comments.service';
+import { CommentsService } from './comments.service';
 
 @Resolver('Comment')
-export class PostsResolver {
+export class CommentsResolver {
   constructor(private commentsService: CommentsService) {}
 
   @Query('comments')

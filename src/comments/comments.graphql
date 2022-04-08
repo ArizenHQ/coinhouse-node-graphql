@@ -1,0 +1,21 @@
+type Comment {
+  id: ID!
+  postId: ID!
+  name: String!
+  email: String!
+  body: String!
+}
+
+"""
+List of available Queries
+"""
+type Query {
+  """
+  Get a list of comments
+  """
+  comments("The number of comments to return." limit: Int): [Comment]
+  """
+  Get a comment by id
+  """
+  comment("The id of the comment to return." id: ID!): Comment
+}

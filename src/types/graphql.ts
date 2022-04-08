@@ -7,6 +7,32 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface Comment {
+    id: string;
+    postId: string;
+    name: string;
+    email: string;
+    body: string;
+}
+
+export interface IQuery {
+    comments(limit?: Nullable<number>): Nullable<Nullable<Comment>[]> | Promise<Nullable<Nullable<Comment>[]>>;
+    comment(id: string): Nullable<Comment> | Promise<Nullable<Comment>>;
+    posts(limit?: Nullable<number>): Nullable<Nullable<Post>[]> | Promise<Nullable<Nullable<Post>[]>>;
+    post(id: string): Nullable<Post> | Promise<Nullable<Post>>;
+    users(limit?: Nullable<number>): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
+    user(id: string): Nullable<User> | Promise<Nullable<User>>;
+}
+
+export interface Post {
+    id: string;
+    userId: string;
+    title: string;
+    body: string;
+    comments: Nullable<Comment>[];
+    author: User;
+}
+
 export interface User {
     id: string;
     name: string;
@@ -36,31 +62,6 @@ export interface Company {
     name: string;
     catchPhrase: string;
     bs: string;
-}
-
-export interface Post {
-    id: string;
-    userId: string;
-    title: string;
-    body: string;
-    comments: Nullable<Comment>[];
-}
-
-export interface Comment {
-    id: string;
-    postId: string;
-    name: string;
-    email: string;
-    body: string;
-}
-
-export interface IQuery {
-    users(limit?: Nullable<number>): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
-    user(id: string): Nullable<User> | Promise<Nullable<User>>;
-    posts(limit?: Nullable<number>): Nullable<Nullable<Post>[]> | Promise<Nullable<Nullable<Post>[]>>;
-    post(id: string): Nullable<Post> | Promise<Nullable<Post>>;
-    comments(limit?: Nullable<number>): Nullable<Nullable<Comment>[]> | Promise<Nullable<Nullable<Comment>[]>>;
-    comment(id: string): Nullable<Comment> | Promise<Nullable<Comment>>;
 }
 
 type Nullable<T> = T | null;

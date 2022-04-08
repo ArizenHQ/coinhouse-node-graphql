@@ -1,0 +1,25 @@
+"""
+A Post
+"""
+type Post {
+  id: ID!
+  userId: ID!
+  title: String!
+  body: String!
+  comments(limit: Int): [Comment]!
+  author: User!
+}
+
+"""
+List of available Queries
+"""
+type Query {
+  """
+  Get a list of posts
+  """
+  posts("The number of posts to return." limit: Int): [Post]
+  """
+  Get a post by id
+  """
+  post("The id of the post to return." id: ID!): Post
+}

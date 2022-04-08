@@ -2,15 +2,20 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { GraphQLModule } from '@nestjs/graphql';
-import resolvers from 'src/resolvers';
-import services from 'src/services';
-// import { UsersResolver } from 'src/resolvers/users.resolver';
-import { UsersService } from 'src/services/users.service';
-// import { PostsResolver } from 'src/resolvers/posts.resolver';
-import { PostsService } from 'src/services/posts.service';
-import { CommentsService } from 'src/services/comments.service';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
+
 import config from 'src/config';
+
+// TODO: Use graphql-tools to generate the schema and use
+// validation options to ensure each field has a resolver
+// https://www.graphql-tools.com/docs/generate-schema
+// https://www.graphql-tools.com/docs/schema-loading
+// const schema = await loadSchema('./**/*.graphql', {
+//   loaders: [new GraphQLFileLoader()]
+// });
 
 @Module({
   imports: [
@@ -25,7 +30,12 @@ import config from 'src/config';
       },
       plugins: [ApolloServerPluginLandingPageLocalDefault],
     }),
+    PostsModule,
+    UsersModule,
+    CommentsModule,
   ],
-  providers: [...services, ...resolvers],
 })
 export class AppModule {}
+function loadSchema(arg0: string, arg1: { loaders: any[] }) {
+  throw new Error('Function not implemented.');
+}
