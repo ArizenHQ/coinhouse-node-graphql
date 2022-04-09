@@ -36,6 +36,3 @@ import config from 'src/config';
   ],
 })
 export class AppModule {}
-function loadSchema(arg0: string, arg1: { loaders: any[] }) {
-  throw new Error('Function not implemented.');
-}
